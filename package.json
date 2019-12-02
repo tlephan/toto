@@ -1,0 +1,27 @@
+{
+  "name": "toto",
+  "version": "1.0.0",
+  "description": "Friendly and lightweight watch dog of servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "start:stg": "set NODE_ENV=staging&&node ./src/app.js",
+    "start:prod": "set NODE_ENV=production&&node ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thanhpl/toto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thanhpl/toto/issues"
+  },
+  "homepage": "https://github.com/thanhpl/toto#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "moment": "^2.24.0"
+  }
+}
