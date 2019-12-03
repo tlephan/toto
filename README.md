@@ -1,4 +1,4 @@
-# toto
+# Toto
 Friendly watch dog of servers
 
 ### Functionality
@@ -7,7 +7,7 @@ Friendly watch dog of servers
 ### Tech stacks
 
 * Express app
-* EJS template for ui
+* EJS template for UI
 * Public first (implement security later)
 * Deploy standalone or PM2 
 
