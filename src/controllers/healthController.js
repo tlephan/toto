@@ -36,6 +36,7 @@ healthController.getHealth = async function(req, res) {
             status: 'Up',
             uptime: uptime,
             environment: store.getEnvironment(),
+            version: store.getVersion(),
             memoryUsage: used.toFixed(1),
             memory: memory,
             diskSpace: diskSpace,
