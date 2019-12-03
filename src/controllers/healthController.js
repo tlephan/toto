@@ -27,8 +27,9 @@ healthController.getHealth = async function(req, res) {
 
         let machine = {
             uptime: machineUptime,
-            platform: os.platform() + '-' + os.arch(),
             hostname: os.hostname(),
+            platform: os.platform(),
+            arch: os.arch(),
             cpus: os.cpus().length
         };
 
