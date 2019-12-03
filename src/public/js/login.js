@@ -17,7 +17,7 @@ function enableLoginComponents() {
 
 function loginOnClick() {
     // Close alerts if there are any
-    //closeDangerAlert();
+    closeDangerAlert();
 
     var password = $('#password-input').val();
     if (password.trim() === '') {
@@ -50,9 +50,10 @@ function loginOnClick() {
             enableLoginComponents();
             console.error(`Login failed, ${error}`);
             if (error === 'Bad Request') {
-                //showDangerAlert('Incorrect username or password.');
+                showDangerAlert('Incorrect username or password.');
             } else {
                 console.error(`Login failed, ${error}`);
+                showDangerAlert(`Login failed`);
             }
         }
     });
