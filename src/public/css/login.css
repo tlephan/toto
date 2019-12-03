@@ -1,0 +1,78 @@
+/*Override in login page*/
+body {
+    height: 100%; 
+    overflow: auto;
+}
+
+.container-login {
+    min-height: 90vh;
+    width: 100%;
+    display: block;
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+    
+    position: fixed; 
+    overflow-y: scroll;
+    top: 0; 
+    right: -17px; 
+    bottom: 0; 
+    left: 0; 
+
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.container-login::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+.container-login-form {
+    max-width: 400px;
+    margin: auto;
+    border-radius: 2px;
+    border: thin solid #eeeeee;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    text-align: center;
+    border-top: 3px solid #f37735;
+    box-shadow: 0 5px 5px 0 #E3E9F3;
+}
+
+.form-group-login {
+    text-align: left;
+}
+
+.label-login {
+    font-weight: 500;
+}
+
+.btn-login {
+    min-width: 120px;
+}
+
+.login-logo-img {
+    max-width: 40px;
+}
+
+.login-title {
+    margin-top: 7px;
+}
+
+.table-login-header {
+    max-width: 400px;
+    margin: auto;
+}
+
+.back-to-home {
+    text-decoration: none;
+    color: gray;
+    font-size: 0.9rem;
+}
+
+.back-to-home:hover {
+    color: gray;
+}
