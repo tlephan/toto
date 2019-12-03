@@ -1,5 +1,5 @@
 # toto
-Friendly and lightweight watch dog of servers
+Friendly watch dog of servers
 
 ### Functionality
 * Health information in both UI and API
