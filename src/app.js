@@ -14,7 +14,7 @@ const auth = require('./middlewares/auth');
 const indexRoute = require('./routes/index');
 const healthRoute = require('./routes/health');
 const authRoute = require('./routes/auth');
-const adminRoute = require('./routes/admin');
+const loginRoute = require('./routes/login');
 
 console.log(`====== ${packageJson.name} ======`);
 var environment = process.env.NODE_ENV || 'development';
@@ -36,7 +36,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Configure routes
 app.use('/', indexRoute);
 app.use('/auth', authRoute);
-app.use('/admin', adminRoute);
+app.use('/login', loginRoute);
 app.use('/api/health', rateLimitWrapper(), auth(), healthRoute);
 
 const port = serverConfig.port;

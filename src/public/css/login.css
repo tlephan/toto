@@ -1,8 +1,4 @@
-/*Override in login page*/
-body {
-    height: 100%; 
-    overflow: auto;
-}
+
 
 .container-login {
     min-height: 90vh;
