@@ -29,7 +29,7 @@ authService.generateToken = function(data) {
 
 authService.verifyToken = function(token) {
     try {
-        const signature = jwtConfig.secret;
+        const signature = jwtConfig.secretKey;
         let decoded = jwt.verify(token, signature);
         return decoded;
     } catch (err) {

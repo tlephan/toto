@@ -7,7 +7,9 @@ const helmet = require('helmet');
 const compression = require('compression');
 const store = require('./store');
 const serverConfig = require('./config/server.json');
+
 const rateLimitWrapper = require('./middlewares/rateLimitWrapper');
+const auth = require('./middlewares/auth');
 
 const indexRoute = require('./routes/index');
 const healthRoute = require('./routes/health');
@@ -32,7 +34,7 @@ app.use(compression());
 // Configure routes
 app.use('/', indexRoute);
 app.use('/auth', authRoute);
-app.use('/api/health', rateLimitWrapper(), healthRoute);
+app.use('/api/health', rateLimitWrapper(), auth(), healthRoute);
 
 const port = serverConfig.port;
 app.listen(port, () => {
