@@ -5,6 +5,7 @@ const path = require('path');
 const moment = require('moment');
 const store = require('./store');
 const serverConfig = require('./config/server.json');
+const rateLimitWrapper = require('./middlewares/rateLimitWrapper');
 
 const indexRoute = require('./routes/index');
 const healthRoute = require('./routes/health');
@@ -24,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Configure routes
 app.use('/', indexRoute);
-app.use('/api/health', healthRoute);
+app.use('/api/health', rateLimitWrapper(), healthRoute);
 
 const port = serverConfig.port;
 app.listen(port, () => {
