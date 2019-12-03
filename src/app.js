@@ -4,6 +4,7 @@ const packageJson = require('../package.json');
 const path = require('path');
 const moment = require('moment');
 const store = require('./store');
+const serverConfig = require('./config/server.json');
 
 const indexRoute = require('./routes/index');
 const healthRoute = require('./routes/health');
@@ -25,7 +26,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/', indexRoute);
 app.use('/api/health', healthRoute);
 
-const port = 1993;
+const port = serverConfig.port;
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
 });
