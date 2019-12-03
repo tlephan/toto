@@ -11,7 +11,7 @@ healthController.getHealth = async function(req, res) {
         let uptime = healthUtil.calculateUptime(store.getStartTime());
         let machineUptime = healthUtil.convertSecondToUptime(os.uptime());
 
-        let memory = {}
+        let memory = {};
         let used = -1;
         memory.free = -1;
         memory.total = -1;
@@ -25,15 +25,21 @@ healthController.getHealth = async function(req, res) {
         diskSpace.freeGb = (diskSpace.free / (1024 * 1024 * 1024)).toFixed(1); // GB
         diskSpace.sizeGb = (diskSpace.size / (1024 * 1024 * 1024)).toFixed(1); // GB
 
+        let machine = {
+            uptime: machineUptime,
+            platform: os.platform() + '-' + os.arch(),
+            hostname: os.hostname(),
+            cpus: os.cpus().length
+        };
+
         let data = {
             status: 'Up',
             uptime: uptime,
             environment: store.getEnvironment(),
-            machineUptime: machineUptime,
             memoryUsage: used.toFixed(1),
             memory: memory,
             diskSpace: diskSpace,
-            platform: os.platform()
+            machine: machine
         };
         response.sendSuccess(res, data);
     } catch (err) {
