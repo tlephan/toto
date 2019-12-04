@@ -1,0 +1,20 @@
+.modal-custom {
+    max-width: 400px !important;
+}
+
+.btn-modal {
+    width: 100px;
+}
+
+.modal-header-custom {
+    border-bottom: 1px solid #eceff3;
+}
+
+.modal-footer-custom {
+    margin-top: 20px;
+    border-top: 0px;
+}
+
+.modal-confirm-title {
+    opacity: 0.8;
+}

@@ -1,0 +1,74 @@
+<script type="text/javascript" src="/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="/libs/popper/1.15.0/popper.min.js"></script>
+<script type="text/javascript" src="/libs/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/libs/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<link rel="stylesheet" href="/css/navigation.css" />
+<link rel="stylesheet" href="/css/modal.css" />
+
+<header class="nav-header">
+    <div class="nav-container">
+        <div class="nav-home">
+            <a class="home-link" href="/dashboard">
+                <!--<img class="nav-logo" src="/images/logo-64px.png" alt=""/>-->
+                <span>Reference Hub</span>
+            </a>
+        </div>
+        
+        <ol class="menu-container">
+            <!--
+            <li class="menu-item"></li>
+            <li class="menu-item">
+                <a class="menu-link" href="#">Home</a>
+            </li>
+             -->
+        </ol>
+       
+        <div class="nav-options mr-2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle nav-link-user" href="#" id="navbarDropdown" 
+                        role="button" data-toggle="dropdown" aria-haspopup="true" 
+                        aria-expanded="false">
+                        <!--<img id="nav-user-image" src="/images/empty-user-64px.png" alt=""/>-->
+                        <span id="nav-user-title" class="ml-1">Admin</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <span class="dropdown-item" onclick="profileOnClick()">Profile</span>
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-item" onclick="confirmLogout()">
+                            <span class="logout-text">Logout <i class="fa fa-sign-out"></i></span>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- Logout Confirm Modal -->
+<div class="modal" id="logoutConfirmModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-custom" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-custom">
+                <h5 class="modal-title modal-confirm-title">
+                    <i class="fa fa-exclamation-circle"></i> <span>Confirm</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="warningModalBody" class="modal-body" style="text-align: left;">
+                Are you sure you want to log out?
+            </div>
+            <div class="modal-footer modal-footer-custom">
+                <button type="button" class="btn btn-outline-secondary btn-sm btn-modal" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm btn-modal" data-dismiss="modal" 
+                    onclick="logout()">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/navigation.js"></script>

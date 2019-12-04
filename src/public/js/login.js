@@ -50,7 +50,7 @@ function loginOnClick() {
             enableLoginComponents();
             console.error(`Login failed, ${error}`);
             if (error === 'Bad Request') {
-                showDangerAlert('Incorrect username or password.');
+                showDangerAlert('Incorrect password!');
             } else {
                 console.error(`Login failed, ${error}`);
                 showDangerAlert(`Login failed`);

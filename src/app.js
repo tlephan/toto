@@ -15,6 +15,7 @@ const indexRoute = require('./routes/index');
 const healthRoute = require('./routes/health');
 const authRoute = require('./routes/auth');
 const loginRoute = require('./routes/login');
+const dashboardRoute = require('./routes/dashboard');
 
 console.log(`====== ${packageJson.name} ======`);
 var environment = process.env.NODE_ENV || 'development';
@@ -37,6 +38,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/', indexRoute);
 app.use('/auth', authRoute);
 app.use('/login', loginRoute);
+app.use('/dashboard', dashboardRoute);
 app.use('/api/health', rateLimitWrapper(), auth(), healthRoute);
 
 const port = serverConfig.port;

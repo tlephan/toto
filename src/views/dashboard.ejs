@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Core API</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+
+</head>
+<body>
+    <%- include('partials/navigation.ejs'); %>
+
+    <%- include('partials/overlaySpinner.ejs'); %>
+
+    <%- include('partials/modals.ejs'); %>
+    
+    <div class="page-content">
+        <div class="container-dashboard">
+            <div class="dashboard-menu-left">
+                
+            </div>
+            <div class="dashboard-content-right">
+                <div id="dashboardContent" class="dashboard-content">
+                    <div class="d-flex justify-content-center mt-2">
+                        <div class="spinner-border text-secondary" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="/js/dashboard.js"></script>
+</body>
+</html>

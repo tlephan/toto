@@ -1,0 +1,137 @@
+.nav-header {
+    position: fixed;
+    box-shadow: 0 1px 0 rgba(12,13,14,0.1), 0 1px 6px rgba(59,64,69,0.1);
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5050;
+    background-color: #fff7f1;
+    transition: box-shadow cubic-bezier(.165, .84, .44, 1) .25s;
+    height: 50px;
+    box-sizing: border-box;
+    border-top: 2px solid #fff7f1;
+    vertical-align: baseline;
+}
+
+.nav-container {
+    margin: auto;
+    /*max-width: 1200px;*/
+    height: 45px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.menu-container {
+    list-style: none;
+    margin: auto;
+    padding: 0;
+    display: flex;
+}
+
+.menu-item {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    padding-bottom: 0;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+    font-size: 10pt;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.menu-link {
+    text-decoration: none;
+    color: #666666;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu-link:hover {
+    text-decoration: none;
+    color: black;
+    background-color: #cdc5bf;
+    border-radius: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.nav-home {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    padding-bottom: 0;
+    height: 100%;
+    align-items: center;
+    cursor: pointer;
+    font-size: 12pt;
+    padding-top: 2px;
+}
+
+.nav-options {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    padding-bottom: 0;
+    height: 100%;
+    align-items: center;
+    font-size: 12pt;
+    margin-right: 5px;
+    padding-right: 10px;
+}
+
+.home-link {
+    text-decoration: none;
+    color: #333333;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.home-link:hover {
+    text-decoration: none;
+    color: #333333;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.nav-logo {
+    max-width: 30px;
+}
+
+.nav-link-user {
+    color: black;
+}
+
+.nav-link-user:hover {
+    color: black;
+}
+
+.logout-text {
+    color: orangered;
+}
+
+#nav-user-title {
+    font-size: 0.8em;
+}
+
+#nav-user-image {
+    max-width: 25px;
+    border-radius: 2px;
+    border: thin solid #dddddd;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}
+
+.dropdown-item:active {
+    color: black;
+    background-color: #eeeeee;
+}
