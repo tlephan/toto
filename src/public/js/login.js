@@ -30,7 +30,8 @@ function loginOnClick() {
     disableLoginComponents();
 
     let data = {
-        password: password
+        password: password,
+        isDashboard: true
     };
     $.ajax({
         url: '/auth/local',
@@ -42,8 +43,6 @@ function loginOnClick() {
         dataType: 'json',
         success: function(result) {
             enableLoginComponents();
-            // Set jwt into cookie and redirect to dashboard
-            localStorage.setItem("totoToken", result.jwt);
             window.location = '/dashboard';
         },
         error: function(request, msg, error) {

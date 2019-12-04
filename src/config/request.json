@@ -2,5 +2,12 @@
     "ratelimit": {
         "interval": 60000,
         "max": 10
+    },
+    "session": {
+        "client": "cookie",
+        "path": "/",
+        "httpOnly": false,
+        "maxAge": 3600,
+        "signed": false
     }
 }
