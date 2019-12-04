@@ -33,7 +33,7 @@ function loginOnClick() {
         password: password
     };
     $.ajax({
-        url: '/auth/adminLogin',
+        url: '/auth/local',
         type: 'post',
         data: data,
         headers: {
@@ -43,8 +43,8 @@ function loginOnClick() {
         success: function(result) {
             enableLoginComponents();
             // Set jwt into cookie and redirect to dashboard
-            //localStorage.setItem("userToken", result.jwt);
-            window.location = '/admin';
+            localStorage.setItem("totoToken", result.jwt);
+            window.location = '/dashboard';
         },
         error: function(request, msg, error) {
             enableLoginComponents();
