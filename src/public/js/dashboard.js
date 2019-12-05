@@ -57,6 +57,7 @@ function renderHealth(result) {
         <div class="data-item ml-2">CPUs: ${result.machine.cpus}</div>
     </div>`;
     let memoryPercent = result.memory.free * 100 / result.memory.total;
+    memoryPercent = 100 - memoryPercent;
     html += `<div>
         <div class="data-group">Memory</div>
         <div class="data-item ml-2">${result.memory.free} <span class="text-muted">MB free of</span> 
@@ -68,6 +69,7 @@ function renderHealth(result) {
         </div>
     </div>`;
     let diskSpacePercent = result.diskSpace.freeGb * 100 / result.diskSpace.sizeGb;
+    diskSpacePercent = 100 - diskSpacePercent;
     html += `<div>
         <div class="data-group">Disk space</div>
         <div class="data-item ml-2">Disk path: ${result.diskSpace.diskPath}</div>
