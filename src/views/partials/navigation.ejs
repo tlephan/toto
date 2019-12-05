@@ -9,44 +9,40 @@
 <link rel="stylesheet" href="/css/modal.css" />
 
 <header class="nav-header">
-    <div class="nav-container">
-        <div class="nav-home">
-            <a class="home-link" href="/dashboard">
-                <!--<img class="nav-logo" src="/images/logo-64px.png" alt=""/>-->
-                <span>Toto</span>
-            </a>
-        </div>
-        
-        <ol class="menu-container">
-            <!--
-            <li class="menu-item"></li>
-            <li class="menu-item">
-                <a class="menu-link" href="#">Home</a>
-            </li>
-             -->
-        </ol>
-       
-        <div class="nav-options mr-2">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle nav-link-user" href="#" id="navbarDropdown" 
-                        role="button" data-toggle="dropdown" aria-haspopup="true" 
-                        aria-expanded="false">
-                        <!--<img id="nav-user-image" src="/images/empty-user-64px.png" alt=""/>-->
-                        <span id="nav-user-title" class="ml-1">Admin</span>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <span class="dropdown-item" onclick="profileOnClick()">Profile</span>
-                        <div class="dropdown-divider"></div>
-                        <span class="dropdown-item" onclick="confirmLogout()">
-                            <span class="logout-text">Logout <i class="fa fa-sign-out"></i></span>
-                        </span>
-                    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand pr-4" href="/">
+            <!--<img class="nav-logo" src="/images/logo-64px.png" alt=""/>-->
+            <span>Toto</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard/health">Health</a>
                 </li>
+                
             </ul>
+            <div class="nav-item dropdown my-2 my-lg-0">
+                <a class="nav-link dropdown-toggle nav-link-user" href="#" id="navbarDropdown" 
+                    role="button" data-toggle="dropdown" aria-haspopup="true" 
+                    aria-expanded="false">
+                    <!--<img id="nav-user-image" class="mr-1" src="/images/empty-user-64px.png" alt=""/>-->
+                    <span id="nav-user-title">Admin</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <span class="dropdown-item" onclick="profileOnClick()">Profile</span>
+                    <div class="dropdown-divider"></div>
+                    <span class="dropdown-item" onclick="confirmLogout()">
+                        <span class="logout-text">Logout <i class="fa fa-sign-out"></i></span>
+                    </span>
+                </div>
+            </div>
         </div>
-    </div>
+    </nav>
 </header>
+
 
 <!-- Logout Confirm Modal -->
 <div class="modal" id="logoutConfirmModal" tabindex="-1" role="dialog" aria-hidden="true">
