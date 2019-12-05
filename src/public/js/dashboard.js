@@ -53,7 +53,7 @@ function renderHealth(result) {
     html += `<div>Status: ${result.status}</div>`;
     html += `<div>Uptime: ${result.uptime}</div>`;
     html += `<div>Version: ${result.version}</div>`;
-    html += `<div>Memory usage: ${result.memoryUsage}</div>`;
+    html += `<div>Memory usage: ${result.memoryUsage} mb</div>`;
     html += `<div>Environment: ${result.environment}</div>`;
     html += `<div>
             <div>Machine</div>
