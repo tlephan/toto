@@ -8,3 +8,7 @@ body {
     font-size: 0.8rem;
     color: gray;
 }
+
+.page-content {
+    margin-top: 55px;
+}

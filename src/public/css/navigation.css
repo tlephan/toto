@@ -1,4 +1,15 @@
 .nav-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5050;
+    background-color: #fafafb;
+    transition: box-shadow cubic-bezier(.165, .84, .44, 1) .25s;
+    height: 50px;
+    box-sizing: border-box;
+    background-color: #333333;
+    vertical-align: baseline;
 }
 
 .nav-container {
