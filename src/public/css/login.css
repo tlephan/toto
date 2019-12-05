@@ -7,8 +7,8 @@
 
     padding-top: 50px;
     padding-bottom: 50px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
     
     position: fixed; 
     overflow-y: scroll;
@@ -31,10 +31,10 @@
     margin: auto;
     border-radius: 2px;
     border: thin solid #eeeeee;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     text-align: center;
     border-top: 3px solid #f37735;
     box-shadow: 0 5px 5px 0 #E3E9F3;
