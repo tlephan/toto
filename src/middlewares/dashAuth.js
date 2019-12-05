@@ -6,11 +6,16 @@ function redirectUnauthorized(res, encodedUrl) {
     // Don't use redirect with status 301 -> will be cached
     type = 'unauthorized';
     // Expire cookie to prevent infinity redirect issue
+    /*
     res.cookie('totoToken', '', {
         path: requestConfig.session.path,
         maxAge: -1,
         httpOnly: requestConfig.session.httpOnly,
         signed: requestConfig.session.signed
+    });
+    */
+    res.clearCookie('totoToken', {
+        path: requestConfig.session.path
     });
     res.redirect(`/login?type=${type}&redirect_to=${encodedUrl}`);
 }
