@@ -50,4 +50,24 @@ authController.local = async function(req, res) {
     }
 };
 
+authController.logout = async function(req, res) {
+    try {
+        let cookies = req.cookies;
+        let token = cookies.totoToke;
+        let decoded = authService.decodeToken(token);
+
+        // Verify token and user before doing logout
+        let data = {
+            message: 'Logout success'
+        };
+        res.clearCookie('totoToken', {
+            path: requestConfig.session.path
+        });
+        response.sendSuccess(res, data);
+    } catch (err) {
+        logger.error(`Access ${req.url} failed, ${err}`);
+        response.sendError(res, err);
+    }
+};
+
 module.exports = authController;

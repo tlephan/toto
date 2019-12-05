@@ -1,17 +1,16 @@
 function logout() {
     showOverlaySpinner();
     $.ajax({
-        url: '/auth/adminLogout',
-        type: 'get',
+        url: '/auth/logout',
+        type: 'post',
         success: function(result) {
             // Redirect to default login page
-            sessionStorage.removeItem('user');
             closeOverlaySpinner();
-            window.location = '/admin/login?type=logout';
+            window.location = '/login?type=logout';
         },
         error: function(request, msg, error) {
             //window.location = '/admin/login?type=logout';
-            console.error(`Login failed, ${error}`);
+            console.error(`Logout failed, ${error}`);
             closeOverlaySpinner();
         }
     });
