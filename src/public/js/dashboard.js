@@ -49,27 +49,43 @@ function renderHealth(result) {
     }
 
     let html = '';
-    html += `<div>Status: ${result.status}</div>`;
-    html += `<div>Uptime: ${result.uptime}</div>`;
-    html += `<div>Version: ${result.version}</div>`;
-    html += `<div>Memory usage: ${result.memoryUsage} mb</div>`;
-    html += `<div>Environment: ${result.environment}</div>`;
     html += `<div>
-            <div>Machine</div>
-            <div class="ml-4">Uptime: ${result.machine.uptime}</div>
-            <div class="ml-4">Hostname: ${result.machine.hostname}</div>
-            <div class="ml-4">Plarform: ${result.machine.platform + '-' + result.machine.arch}</div>
-            <div class="ml-4">CPUs: ${result.machine.cpus}</div>
-        </div>`;
+        <div class="data-group">Machine</div>
+        <div class="data-item ml-2">Uptime: ${result.machine.uptime}</div>
+        <div class="data-item ml-2">Hostname: ${result.machine.hostname}</div>
+        <div class="data-item ml-2">Plarform: ${result.machine.platform + '-' + result.machine.arch}</div>
+        <div class="data-item ml-2">CPUs: ${result.machine.cpus}</div>
+    </div>`;
+    let memoryPercent = result.memory.free * 100 / result.memory.total;
     html += `<div>
-        <div>Memory</div>
-        <div class="ml-4">Free: ${result.memory.free} mb</div>
-        <div class="ml-4">Total: ${result.memory.total} mb</div>
+        <div class="data-group">Memory</div>
+        <div class="data-item ml-2">${result.memory.free} <span class="text-muted">MB free of</span> 
+            ${result.memory.total} <span class="text-muted">MB</span></div>
+        <div class="progress ml-2">
+            <div class="progress-bar bg-success" role="progressbar" style="width: ${memoryPercent}%;"
+                aria-valuenow="${memoryPercent}" 
+                aria-valuemin="0" aria-valuemax="100">${memoryPercent.toFixed(0)}%</div>
+        </div>
+    </div>`;
+    let diskSpacePercent = result.diskSpace.freeGb * 100 / result.diskSpace.sizeGb;
+    html += `<div>
+        <div class="data-group">Disk space</div>
+        <div class="data-item ml-2">Disk path: ${result.diskSpace.diskPath}</div>
+        <div class="data-item ml-2">${result.diskSpace.freeGb} <span class="text-muted">GB free of</span> 
+            ${result.diskSpace.sizeGb} <span class="text-muted">GB</span></div>
+        <div class="progress ml-2">
+            <div class="progress-bar bg-success" role="progressbar" style="width: ${diskSpacePercent}%;"
+                aria-valuenow="${diskSpacePercent}" 
+                aria-valuemin="0" aria-valuemax="100">${diskSpacePercent.toFixed(0)}%</div>
+        </div>
     </div>`;
     html += `<div>
-        <div>Disk Space</div>
-        <div class="ml-4">Free: ${result.diskSpace.freeGb} gb</div>
-        <div class="ml-4">Size: ${result.diskSpace.sizeGb} gb</div>
+        <div class="data-group">App</div>
+        <div class="data-item ml-2">Status: ${result.status}</div>
+        <div class="data-item ml-2">Uptime: ${result.uptime}</div>
+        <div class="data-item ml-2">Version: ${result.version}</div>
+        <div class="data-item ml-2">Memory usage: ${result.memoryUsage} MB</div>
+        <div class="data-item ml-2">Environment: ${result.environment}</div>
     </div>`;
     return html;
 }

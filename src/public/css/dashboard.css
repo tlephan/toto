@@ -1,7 +1,7 @@
 .container-dashboard {
     min-height: 90vh;
-    padding-left: 5px !important;
-    padding-right: 5px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
     margin: auto;
     max-width: 600px;
 }
@@ -14,8 +14,19 @@
     width: 100%;
     background: #ffffff;
     padding: 30px 30px 30px 30px;
-    box-shadow: 0 4px 4px 0 #E3E9F3;
+    box-shadow: 0 2px 4px 2px #E3E9F3;
     border-radius: 3px;
-    margin-top: 20px;
-    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-bottom: 30px;
 } 
+
+.data-group {
+    margin-top: 10px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+.data-item {
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
