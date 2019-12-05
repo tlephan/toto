@@ -34,7 +34,6 @@ async function getHealth() {
             type: 'get',
             headers: authHeaders
         });
-        console.log(result);
         setTimeout(() => {
             let html = renderHealth(result);
             $('#healthBody').html(html);
