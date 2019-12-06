@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const jwtConfig = require('../../secret/jwt.json');
+const secretConfig = require('../../secret/secret.json');
 const securityCode = require('../../secret/security_code.json');
 var authService = {};
 
@@ -22,14 +22,14 @@ authService.login = async function(password) {
 };
 
 authService.generateToken = function(data) {
-    const signature = jwtConfig.secretKey;
-    const expiration = '12h';
+    const signature = secretConfig.secretKey;
+    const expiration = '1h';
     return jwt.sign({ data }, signature, { expiresIn: expiration });
 };
 
 authService.verifyToken = function(token) {
     try {
-        const signature = jwtConfig.secretKey;
+        const signature = secretConfig.secretKey;
         let decoded = jwt.verify(token, signature);
         return decoded;
     } catch (err) {
