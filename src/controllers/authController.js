@@ -75,4 +75,8 @@ authController.logout = async function(req, res) {
     }
 };
 
+authController.forgotPassword = async function(req, res) {
+    res.send('/unimplemented');
+};
+
 module.exports = authController;

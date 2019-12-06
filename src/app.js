@@ -10,7 +10,7 @@ const store = require('./store');
 const serverConfig = require('./config/server.json');
 
 const rateLimitWrapper = require('./middlewares/rateLimitWrapper');
-const auth = require('./middlewares/auth');
+const apiAuth = require('./middlewares/apiAuth');
 const dashAuth = require('./middlewares/dashAuth');
 
 const indexRoute = require('./routes/index');
@@ -18,6 +18,7 @@ const healthRoute = require('./routes/health');
 const authRoute = require('./routes/auth');
 const loginRoute = require('./routes/login');
 const dashboardRoute = require('./routes/dashboard');
+const accountRoute = require('./routes/account');
 
 console.log(`====== ${packageJson.name} ======`);
 var environment = process.env.NODE_ENV || 'development';
@@ -39,10 +40,11 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Configure routes
 app.use('/', indexRoute);
-app.use('/api/auth', authRoute);
 app.use('/login', dashAuth(), loginRoute);
 app.use('/dashboard', dashAuth(), dashboardRoute);
-app.use('/api/health', rateLimitWrapper(), auth(), healthRoute);
+app.use('/api/auth', authRoute); // Public APIs
+app.use('/api/account', rateLimitWrapper(), apiAuth(), accountRoute);
+app.use('/api/health', rateLimitWrapper(), apiAuth(), healthRoute);
 
 const port = serverConfig.port;
 app.listen(port, () => {

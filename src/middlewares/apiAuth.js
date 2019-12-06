@@ -1,7 +1,7 @@
 const response = require('../util/response');
 const authService = require('../services/authService');
 
-function auth(options) {
+function apiAuth(options) {
     let opts = options || {};
 
     return async (req, res, next) => {
@@ -38,4 +38,4 @@ function auth(options) {
     };
 }
 
-module.exports = auth;
+module.exports = apiAuth;
