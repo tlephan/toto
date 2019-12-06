@@ -8,7 +8,6 @@
     transition: box-shadow cubic-bezier(.165, .84, .44, 1) .25s;
     height: 50px;
     box-sizing: border-box;
-    background-color: #333333;
     vertical-align: baseline;
 }
 
@@ -47,4 +46,12 @@
 .dropdown-item:active {
     color: black;
     background-color: #eeeeee;
+}
+
+.bg-nav-custom {
+    background-color: #333333 !important;
+}
+
+.navbar {
+    padding: .3rem 1rem !important;
 }

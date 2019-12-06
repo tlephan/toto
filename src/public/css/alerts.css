@@ -1,3 +1,7 @@
+.alert {
+    text-align: left;
+}
+
 .default-alert {
     display: none;
 }
