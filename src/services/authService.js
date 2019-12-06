@@ -1,24 +1,43 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const fileUtil = require('../util/fileUtil');
+const path = require('path');
 const secretConfig = require('../../secret/secret.json');
-const securityCode = require('../../secret/security_code.json');
 var authService = {};
 
 authService.login = async function(password) {
-    let hash = securityCode.hash;
-    let authenticate = function() {
-        return new Promise((resolve, reject) => {
-            bcrypt.compare(password, hash, (err, result) => {
-                if (err) {
-                    console.error(`Compare hash failed, ${err}`);
-                    reject(new Error(err.toString()));
-                }
-                resolve(result);
+    let hash = '';
+    try {
+        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash');
+        hash = await fileUtil.read(hashFilePath);
+    } catch (err) {
+        console.error(err);
+        return {
+            hasPassword: false,
+            isAuthenticated: false
+        };
+    }
+
+    try {
+        let authenticate = function() {
+            return new Promise((resolve, reject) => {
+                bcrypt.compare(password, hash, (err, result) => {
+                    if (err) {
+                        console.error(`Compare hash failed, ${err}`);
+                        reject(new Error(err.toString()));
+                    }
+                    resolve(result);
+                });
             });
-        });
-    };
-    let isAuthenticated = await authenticate();
-    return isAuthenticated;
+        };
+        let isAuthenticated = await authenticate();
+        return {
+            hasPassword: true,
+            isAuthenticated: isAuthenticated
+        };
+    } catch (err) {
+        throw err;
+    }
 };
 
 authService.generateToken = function(data) {

@@ -14,21 +14,26 @@ authController.local = async function(req, res) {
         if (req.body.password !== undefined) {
             password = req.body.password;
         }
-        let isAuthenticated = await authService.login(password);
+        let loginResult = await authService.login(password);
 
-        if (isAuthenticated === false) {
+        if (!loginResult.hasPassword) {
+            response.sendNotFound(res, 'Not found credentials');
+            return;
+        }
+
+        if (!loginResult.isAuthenticated) {
             response.sendBadRequest(res, 'Incorrect password');
             return;
         }
 
         let token = authService.generateToken({
-            app: 'toto'
+            status: 'authenticated'
         });
 
         let data = {
             accessToken: token,
             result: {
-                app: 'toto'
+                status: 'authenticated'
             }
         };
 
