@@ -39,7 +39,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Configure routes
 app.use('/', indexRoute);
-app.use('/auth', authRoute);
+app.use('/api/auth', authRoute);
 app.use('/login', dashAuth(), loginRoute);
 app.use('/dashboard', dashAuth(), dashboardRoute);
 app.use('/api/health', rateLimitWrapper(), auth(), healthRoute);

@@ -34,7 +34,7 @@ function loginOnClick() {
         isDashboard: true
     };
     $.ajax({
-        url: '/auth/local',
+        url: '/api/auth/local',
         type: 'post',
         data: data,
         headers: {

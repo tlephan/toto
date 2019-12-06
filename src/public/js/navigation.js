@@ -1,7 +1,7 @@
 function logout() {
     showOverlaySpinner();
     $.ajax({
-        url: '/auth/logout',
+        url: '/api/auth/logout',
         type: 'post',
         success: function(result) {
             // Redirect to default login page
