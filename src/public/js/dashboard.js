@@ -17,10 +17,14 @@ var authHeaders = {
     Authorization: 'Bearer ' + getCookie('totoToken')
 };
 
+function redirectLogin() {
+    window.location = '/login';
+}
+
 async function getHealth() {
     let token = getCookie('totoToken');
-    if (token === undefined || token.trim() === '') {
-        console.error(`Token is undefined or empty`);
+    if (token === undefined || token === null || token.trim() === '') {
+        redirectLogin();
         return;
     }
 
@@ -53,32 +57,45 @@ function renderHealth(result) {
         <div class="data-group">Machine</div>
         <div class="data-item ml-2">Uptime: ${result.machine.uptime}</div>
         <div class="data-item ml-2">Hostname: ${result.machine.hostname}</div>
-        <div class="data-item ml-2">Plarform: ${result.machine.platform + '-' + result.machine.arch}</div>
+        <div class="data-item ml-2">Plarform: ${result.machine.platform +
+            '-' +
+            result.machine.arch}</div>
         <div class="data-item ml-2">CPUs: ${result.machine.cpus}</div>
     </div>`;
-    let memoryPercent = result.memory.free * 100 / result.memory.total;
+    let memoryPercent = (result.memory.free * 100) / result.memory.total;
     memoryPercent = 100 - memoryPercent;
     html += `<div>
         <div class="data-group">Memory</div>
-        <div class="data-item ml-2">${result.memory.free} <span class="text-muted">MB free of</span> 
+        <div class="data-item ml-2">${
+            result.memory.free
+        } <span class="text-muted">MB free of</span> 
             ${result.memory.total} <span class="text-muted">MB</span></div>
         <div class="progress ml-2">
             <div class="progress-bar bg-success" role="progressbar" style="width: ${memoryPercent}%;"
                 aria-valuenow="${memoryPercent}" 
-                aria-valuemin="0" aria-valuemax="100">${memoryPercent.toFixed(0)}%</div>
+                aria-valuemin="0" aria-valuemax="100">${memoryPercent.toFixed(
+                    0
+                )}%</div>
         </div>
     </div>`;
-    let diskSpacePercent = result.diskSpace.freeGb * 100 / result.diskSpace.sizeGb;
+    let diskSpacePercent =
+        (result.diskSpace.freeGb * 100) / result.diskSpace.sizeGb;
     diskSpacePercent = 100 - diskSpacePercent;
     html += `<div>
         <div class="data-group">Disk space</div>
-        <div class="data-item ml-2">Disk path: ${result.diskSpace.diskPath}</div>
-        <div class="data-item ml-2">${result.diskSpace.freeGb} <span class="text-muted">GB free of</span> 
+        <div class="data-item ml-2">Disk path: ${
+            result.diskSpace.diskPath
+        }</div>
+        <div class="data-item ml-2">${
+            result.diskSpace.freeGb
+        } <span class="text-muted">GB free of</span> 
             ${result.diskSpace.sizeGb} <span class="text-muted">GB</span></div>
         <div class="progress ml-2">
             <div class="progress-bar bg-success" role="progressbar" style="width: ${diskSpacePercent}%;"
                 aria-valuenow="${diskSpacePercent}" 
-                aria-valuemin="0" aria-valuemax="100">${diskSpacePercent.toFixed(0)}%</div>
+                aria-valuemin="0" aria-valuemax="100">${diskSpacePercent.toFixed(
+                    0
+                )}%</div>
         </div>
     </div>`;
     html += `<div>
