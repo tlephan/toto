@@ -4,12 +4,14 @@ const fileUtil = require('../util/fileUtil');
 const path = require('path');
 const secretConfig = require('../../secret/secret.json');
 var authService = {};
+const saltRounds = 10;
 
 authService.login = async function(password) {
     let hash = '';
     try {
         let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash');
-        hash = await fileUtil.read(hashFilePath);
+        let plainText = await fileUtil.read(hashFilePath);
+        hash = JSON.parse(plainText).hash;
     } catch (err) {
         console.error(err);
         return {
@@ -60,6 +62,21 @@ authService.decodeToken = function(token) {
     try {
         let decoded = jwt.decode(token);
         return decoded;
+    } catch (err) {
+        throw err;
+    }
+};
+
+authService.setNewPassword = async function(newPassword) {
+    try {
+        let salt = await bcrypt.genSalt(saltRounds);
+        let hash = await bcrypt.hash(newPassword, salt);
+        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash');
+        let data = {
+            hash: hash,
+            salt: salt
+        };
+        await fileUtil.write(hashFilePath, JSON.stringify(data, null, 4));
     } catch (err) {
         throw err;
     }
