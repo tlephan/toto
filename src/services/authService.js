@@ -22,14 +22,14 @@ authService.login = async function(password) {
 };
 
 authService.generateToken = function(data) {
-    const signature = secretConfig.secretKey;
+    const signature = secretConfig.jwtKey;
     const expiration = '1h';
     return jwt.sign({ data }, signature, { expiresIn: expiration });
 };
 
 authService.verifyToken = function(token) {
     try {
-        const signature = secretConfig.secretKey;
+        const signature = secretConfig.jwtKey;
         let decoded = jwt.verify(token, signature);
         return decoded;
     } catch (err) {
