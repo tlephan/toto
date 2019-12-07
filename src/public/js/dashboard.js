@@ -186,6 +186,7 @@ function resetPasswordOnClick() {
         error: function(request, msg, error) {
             console.error(`Reset password failed`);
             console.error(error);
+            showErrorModal(`Invalid password`);
         }
     });
 }
