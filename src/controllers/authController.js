@@ -1,6 +1,8 @@
 const response = require('../util/response');
 const authService = require('../services/authService');
+const loginHistoryService = require('../services/loginHistoryService');
 const requestConfig = require('../config/request.json');
+const requestUtil = require('../util/requestUtil');
 
 var authController = {};
 
@@ -25,6 +27,14 @@ authController.local = async function(req, res) {
             response.sendBadRequest(res, 'Incorrect password');
             return;
         }
+
+        let loginData = {
+            time: new Date(),
+            remoteIp: requestUtil.getRemoteIp(req),
+            userAgent: requestUtil.getUserAgent(req),
+            status: 'success'
+        }
+        await loginHistoryService.createLast(loginData);
 
         let token = authService.generateToken({
             status: 'authenticated'
