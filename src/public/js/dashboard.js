@@ -42,6 +42,16 @@ async function gotoHealth() {
             let html = renderHealth(result);
             $('#healthBody').html(html);
         }, 500);
+
+        let lastLoginResult = await $.ajax({
+            url: '/api/account/last-login',
+            type: 'get',
+            headers: authHeaders
+        });
+        setTimeout(() => {
+            let html = renderLastLogin(lastLoginResult);
+            $('#lastLoginBody').html(html);
+        }, 500);
     } catch (err) {
         console.error(`Get health failed, ${err}`);
     }
@@ -105,6 +115,21 @@ function renderHealth(result) {
         <div class="data-item ml-2">Version: ${result.version}</div>
         <div class="data-item ml-2">Memory usage: ${result.memoryUsage} MB</div>
         <div class="data-item ml-2">Environment: ${result.environment}</div>
+    </div>`;
+    return html;
+}
+
+function renderLastLogin(result) {
+    if (result === undefined || result === null) {
+        return 'Not Found';
+    }
+    let html = '';
+    html += `<div>
+        <div class="data-group">Last Login Time</div>
+        <div class="data-item ml-2">Status: ${result.status}</div>
+        <div class="data-item ml-2">Time: ${result.time}</div>
+        <div class="data-item ml-2">Remote IP: ${result.remoteIp}</div>
+        <div class="data-item ml-2">User Agent: ${result.userAgent}</div>
     </div>`;
     return html;
 }
