@@ -11,4 +11,5 @@ body {
 
 .page-content {
     margin-top: 55px;
+    min-height: 78vh;
 }
