@@ -23,7 +23,8 @@ function apiAuth(options) {
 
             // Verify token by decoding token
             try {
-                authService.verifyToken(token);
+                let decoded = authService.verifyToken(token);
+                req.sessionId = decoded.data.sessionId;
             } catch (verifyErr) {
                 response.sendUnauthorized(res);
                 return;

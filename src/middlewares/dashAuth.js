@@ -63,6 +63,7 @@ function dashAuth() {
         // Verify token by decoding token
         try {
             let decoded = authService.verifyToken(token);
+            req.sessionId = decoded.data.sessionId;
 
             if (isLoginAccess) {
                 // If authorized user access login page again
