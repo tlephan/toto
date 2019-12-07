@@ -3,6 +3,7 @@ const authService = require('../services/authService');
 const loginHistoryService = require('../services/loginHistoryService');
 const requestConfig = require('../config/request.json');
 const requestUtil = require('../util/requestUtil');
+const shortId = require('shortid');
 
 var authController = {};
 
@@ -36,14 +37,15 @@ authController.local = async function(req, res) {
         }
         await loginHistoryService.createLast(loginData);
 
+        let sessionId = shortId.generate();
         let token = authService.generateToken({
-            status: 'authenticated'
+            sessionId: sessionId
         });
 
         let data = {
             accessToken: token,
             result: {
-                status: 'authenticated'
+                sessionId: sessionId
             }
         };
 
