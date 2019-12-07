@@ -38,20 +38,14 @@ async function gotoHealth() {
             type: 'get',
             headers: authHeaders
         });
-        setTimeout(() => {
-            let html = renderHealth(result);
-            $('#healthBody').html(html);
-        }, 500);
+        $('#healthBody').html(renderHealth(result));
 
         let lastLoginResult = await $.ajax({
             url: '/api/account/last-login',
             type: 'get',
             headers: authHeaders
         });
-        setTimeout(() => {
-            let html = renderLastLogin(lastLoginResult);
-            $('#lastLoginBody').html(html);
-        }, 500);
+        $('#lastLoginBody').html(renderLastLogin(lastLoginResult));
     } catch (err) {
         console.error(`Get health failed, ${err}`);
     }
