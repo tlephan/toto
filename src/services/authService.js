@@ -9,7 +9,7 @@ const saltRounds = 10;
 authService.login = async function(password) {
     let hash = '';
     try {
-        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash');
+        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash.tmp');
         let plainText = await fileUtil.read(hashFilePath);
         hash = JSON.parse(plainText).hash;
     } catch (err) {
@@ -71,7 +71,7 @@ authService.setNewPassword = async function(newPassword) {
     try {
         let salt = await bcrypt.genSalt(saltRounds);
         let hash = await bcrypt.hash(newPassword, salt);
-        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash');
+        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash.tmp');
         let data = {
             hash: hash,
             salt: salt

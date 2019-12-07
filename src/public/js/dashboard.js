@@ -43,7 +43,7 @@ async function getHealth() {
             $('#healthBody').html(html);
         }, 500);
     } catch (err) {
-        console.error(`Get roles failed, ${err}`);
+        console.error(`Get health failed, ${err}`);
     }
 }
 
@@ -110,3 +110,82 @@ function renderHealth(result) {
 }
 
 getHealth();
+
+async function gotoResetPassword() {
+    let resetPassUrl = '/dashboard/reset-password';
+    window.history.pushState({ path: resetPassUrl }, '', resetPassUrl);
+
+    let token = getCookie('totoToken');
+    if (token === undefined || token === null || token.trim() === '') {
+        redirectLogin();
+        return;
+    }
+
+    try {
+        await $('#dashboardContent')
+            .load('/templates/resetPassword.html')
+            .promise();
+    } catch (err) {
+        console.error(`Get reset password failed, ${err}`);
+    }
+}
+
+function resetPasswordOnClick() {
+    var oldPassword = $('#oldpass-input')
+        .val()
+        .trim();
+    if (oldPassword === '') {
+        $('#oldpass-invalid-feedback').css('display', 'block');
+        return;
+    } else {
+        $('#oldpass-invalid-feedback').css('display', 'none');
+    }
+    var newPassword = $('#newpass-input')
+        .val()
+        .trim();
+    if (newPassword === '') {
+        $('#newpass-invalid-feedback').css('display', 'block');
+        return;
+    } else {
+        $('#newpass-invalid-feedback').css('display', 'none');
+    }
+    var confirmPassword = $('#confirmpass-input')
+        .val()
+        .trim();
+    if (confirmPassword === '') {
+        $('#confirmpass-invalid-feedback').css('display', 'block');
+        return;
+    } else {
+        $('#confirmpass-invalid-feedback').css('display', 'none');
+    }
+
+    if (newPassword !== confirmPassword) {
+        $('#confirmpass-invalid-feedback').html(
+            'Confirm new password is not correct'
+        );
+        $('#confirmpass-invalid-feedback').css('display', 'block');
+        return;
+    } else {
+        $('#confirmpass-invalid-feedback').css('display', 'none');
+    }
+
+    let data = {
+        oldPassword: oldPassword,
+        newPassword: newPassword
+    };
+    $.ajax({
+        url: '/api/account/reset-password',
+        type: 'post',
+        data: data,
+        headers: authHeaders,
+        dataType: 'json',
+        success: function(result) {
+            console.log('Change password success');
+            window.location = '/dashboard';
+        },
+        error: function(request, msg, error) {
+            console.error(`Reset password failed`);
+            console.error(error);
+        }
+    });
+}
