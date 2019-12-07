@@ -21,7 +21,7 @@ function redirectLogin() {
     window.location = '/login';
 }
 
-async function getHealth() {
+async function gotoHealth() {
     let token = getCookie('totoToken');
     if (token === undefined || token === null || token.trim() === '') {
         redirectLogin();
@@ -108,8 +108,6 @@ function renderHealth(result) {
     </div>`;
     return html;
 }
-
-getHealth();
 
 async function gotoResetPassword() {
     let resetPassUrl = '/dashboard/reset-password';
