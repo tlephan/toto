@@ -125,7 +125,7 @@ function renderLastLogin(result) {
     }
     let html = '';
     html += `<div>
-        <div class="data-group">Last Login Time</div>
+        <div class="data-group">Last Login</div>
         <div class="data-item ml-2">Status: ${result.status}</div>
         <div class="data-item ml-2">Time: ${result.time}</div>
         <div class="data-item ml-2">Remote IP: ${result.remoteIp}</div>
