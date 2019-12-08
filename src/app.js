@@ -6,8 +6,10 @@ const moment = require('moment');
 const helmet = require('helmet');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
+const serveIndex = require('serve-index');
 const store = require('./store');
 const serverConfig = require('./config/server.json');
+const loggingConfig = require('./config/logging.json');
 
 const rateLimitWrapper = require('./middlewares/rateLimitWrapper');
 const apiAuth = require('./middlewares/apiAuth');
@@ -42,6 +44,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.use('/', indexRoute);
 app.use('/login', dashAuth(), loginRoute);
 app.use('/dashboard', dashAuth(), dashboardRoute);
+app.use(
+    '/static/log',
+    dashAuth(),
+    express.static(loggingConfig.directory),
+    serveIndex(loggingConfig.directory, { icons: true, view: 'details' })
+);
 app.use('/api/auth', authRoute); // Public APIs
 app.use('/api/account', rateLimitWrapper(), apiAuth(), accountRoute);
 app.use('/api/health', rateLimitWrapper(), apiAuth(), healthRoute);
