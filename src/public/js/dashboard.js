@@ -70,7 +70,7 @@ function renderHealth(result) {
     memoryPercent = 100 - memoryPercent;
     let bgColor = memoryPercent >= 90 ? 'bg-warning' : 'bg-success';
     html += `<div>
-        <div class="data-group">Memory</div>
+        <div class="data-group mt-2">Memory</div>
         <div class="data-item ml-2">${
             result.memory.free
         } <span class="text-muted">MB free of</span> 
@@ -88,7 +88,7 @@ function renderHealth(result) {
     diskSpacePercent = 100 - diskSpacePercent;
     bgColor = diskSpacePercent >= 90 ? 'bg-warning' : 'bg-success';
     html += `<div>
-        <div class="data-group">Disk space</div>
+        <div class="data-group mt-2">Disk space</div>
         <div class="data-item ml-2">Disk path: ${
             result.diskSpace.diskPath
         }</div>
@@ -105,7 +105,7 @@ function renderHealth(result) {
         </div>
     </div>`;
     html += `<div>
-        <div class="data-group">App</div>
+        <div class="data-group mt-2">App</div>
         <div class="data-item ml-2">Status: ${result.status}</div>
         <div class="data-item ml-2">Uptime: ${result.uptime}</div>
         <div class="data-item ml-2">Version: ${result.version}</div>
