@@ -1,6 +1,9 @@
 # Toto
 Friendly and independent watch dog (monitor agent) for server
 
+### Why does this project appear?
+In my situation, I just need to monitor one or a few of personal servers in low resource capacity. So based on Node.js knowledge and experience, I created this agent application (lightweight and simple enough) to serve my purpose. This application also exposes API in case of a monitor server has requirement to collect monitor data from them.
+
 ### Functionality
 * Health information in both UI and API
 
@@ -13,21 +16,14 @@ Friendly and independent watch dog (monitor agent) for server
 
 # Deployment
 
-Create 2 configuration files in `/secret` directory.
+Create a configuration files in `/secret` directory.
 
-1. File `jwt.json` contains JWT secret key
-
-```json
-{
-    "secretKey": "this-is-a-sample-secret"
-}
-```
-
-2. File `security_code.json` contains hash of password (sample hash of `123456`)
+File `secret.json` contains secret keys, and you need to change its value in production enviroment:
 
 ```json
 {
-    "hash": "$2a$10$Yvtr62vEChXlRNaZbGnSCu91CiloQ0GdYPzvILy1fdklJoPwQtgSW"
+    "jwtKey": "this-is-a-sample-secret",
+    "forgotPasswordKey": "this-is-forgot-password-key"
 }
 ```
 
@@ -49,5 +45,5 @@ $ pm2 restart toto
 
 To start application standalone:
 ```
-./entrypoint.sh &
+$ ./entrypoint.sh &
 ```
