@@ -18,6 +18,9 @@ function dispatchRoute() {
         case 'reset-password':
             gotoResetPassword();
             break;
+        case 'static': 
+            gotoStaticResource();
+            break;
         default:
             gotoHealth();
             break;

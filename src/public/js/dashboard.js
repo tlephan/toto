@@ -209,3 +209,22 @@ function resetPasswordOnClick() {
         }
     });
 }
+
+async function gotoStaticResource() {
+    let staticUrl = '/dashboard/static';
+    window.history.pushState({ path: staticUrl }, '', staticUrl);
+
+    let token = getCookie('totoToken');
+    if (token === undefined || token === null || token.trim() === '') {
+        redirectLogin();
+        return;
+    }
+
+    try {
+        await $('#dashboardContent')
+            .load('/templates/staticResource.html')
+            .promise();
+    } catch (err) {
+        console.error(`Get static resource failed, ${err}`);
+    }
+}

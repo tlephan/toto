@@ -5,4 +5,6 @@ router.get('/', dashboardController.dashboard);
 
 router.get('/reset-password', dashboardController.dashboard);
 
+router.get('/static', dashboardController.dashboard);
+
 module.exports = router;
