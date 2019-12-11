@@ -1,5 +1,5 @@
 # Toto
-Friendly and independent watch dog (monitor agent) for servers
+Friendly and independent watch dog (monitor agent) for server
 
 ### Functionality
 * Health information in both UI and API
