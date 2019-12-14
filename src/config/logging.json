@@ -1,5 +1,5 @@
 {
-    "directory": "/var/log/toto",
+    "dirname": "/var/log/toto",
     "filename": "toto-%DATE%.log",
     "datePattern": "YYYY-MM-DD",
     "zippedArchive": true,
