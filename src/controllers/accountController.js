@@ -38,7 +38,7 @@ accountController.resetPassword = async function(req, res) {
         };
         response.sendSuccess(res, data);
     } catch (err) {
-        console.error(err);
+        console.error(err.stack);
         response.sendError(res, err);
     }
 };
@@ -51,7 +51,7 @@ accountController.lastLogin = async function(req, res) {
         data.time = data.time.replace('T', ' ');
         response.sendSuccess(res, data);
     } catch (err) {
-        console.log(err);
+        console.log(err.stack);
         response.sendNotFound(res, 'Not found last login data');
     }
 };

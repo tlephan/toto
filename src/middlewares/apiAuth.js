@@ -32,7 +32,7 @@ function apiAuth(options) {
 
             next();
         } catch (err) {
-            console.error(`Authenticate failed, ${err}`);
+            console.error(`Authenticate failed, ${err.stack}`);
             response.sendError(res, err);
             return;
         }

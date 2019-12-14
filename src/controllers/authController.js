@@ -62,7 +62,7 @@ authController.local = async function(req, res) {
         }
         response.sendSuccess(res, data);
     } catch (err) {
-        console.error(`Access ${req.url} failed, ${err}`);
+        console.error(`Access ${req.url} failed, ${err.stack}`);
         response.sendError(res, err);
     }
 };
@@ -82,7 +82,7 @@ authController.logout = async function(req, res) {
         });
         response.sendSuccess(res, data);
     } catch (err) {
-        logger.error(`Access ${req.url} failed, ${err}`);
+        console.error(`Access ${req.url} failed, ${err.stack}`);
         response.sendError(res, err);
     }
 };

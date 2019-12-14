@@ -45,7 +45,7 @@ healthController.getHealth = async function(req, res) {
         };
         response.sendSuccess(res, data);
     } catch (err) {
-        console.error(`Access ${req.url} failed, ${err}`);
+        console.error(`Access ${req.url} failed, ${err.stack}`);
         response.sendError(res, err);
     }
 };

@@ -13,7 +13,7 @@ authService.login = async function(password) {
         let plainText = await fileUtil.read(hashFilePath);
         hash = JSON.parse(plainText).hash;
     } catch (err) {
-        console.error(err);
+        console.error(err.stack);
         return {
             hasPassword: false,
             isAuthenticated: false

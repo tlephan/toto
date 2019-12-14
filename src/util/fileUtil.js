@@ -21,7 +21,7 @@ fileUtil.readSync = function(filePath) {
         let rawdata = fs.readFileSync(filePath);
         return rawdata.toString();
     } catch (err) {
-        console.error(`Read text failed, ${err}`);
+        console.error(`Read text failed, ${err.stack}`);
         return null;
     }
 };
@@ -49,7 +49,7 @@ fileUtil.writeSync = function(filePath, content) {
         fs.writeFileSync(filePath, content);
         return true;
     } catch (err) {
-        console.error(`Write config failed, ${err}`);
+        console.error(`Write config failed, ${err.stack}`);
         return false;
     }
 };
