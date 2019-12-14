@@ -2,6 +2,7 @@ const response = require('../util/response');
 const authService = require('../services/authService');
 const loginHistoryService = require('../services/loginHistoryService');
 const userAgent = require('useragent');
+const logger = require('../common/logger')('AccountController');
 
 var accountController = {};
 
@@ -38,7 +39,7 @@ accountController.resetPassword = async function(req, res) {
         };
         response.sendSuccess(res, data);
     } catch (err) {
-        console.error(err.stack);
+        logger.error(err.stack);
         response.sendError(res, err);
     }
 };
@@ -51,7 +52,7 @@ accountController.lastLogin = async function(req, res) {
         data.time = data.time.replace('T', ' ');
         response.sendSuccess(res, data);
     } catch (err) {
-        console.log(err.stack);
+        logger.error(err.stack);
         response.sendNotFound(res, 'Not found last login data');
     }
 };

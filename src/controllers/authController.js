@@ -4,6 +4,7 @@ const loginHistoryService = require('../services/loginHistoryService');
 const requestConfig = require('../config/request.json');
 const requestUtil = require('../util/requestUtil');
 const shortId = require('shortid');
+const logger = require('../common/logger')('AuthController');
 
 var authController = {};
 
@@ -62,7 +63,7 @@ authController.local = async function(req, res) {
         }
         response.sendSuccess(res, data);
     } catch (err) {
-        console.error(`Access ${req.url} failed, ${err.stack}`);
+        logger.error(`Access ${req.url} failed, ${err.stack}`);
         response.sendError(res, err);
     }
 };
@@ -82,7 +83,7 @@ authController.logout = async function(req, res) {
         });
         response.sendSuccess(res, data);
     } catch (err) {
-        console.error(`Access ${req.url} failed, ${err.stack}`);
+        logger.error(`Access ${req.url} failed, ${err.stack}`);
         response.sendError(res, err);
     }
 };

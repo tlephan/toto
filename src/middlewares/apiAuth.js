@@ -1,5 +1,6 @@
 const response = require('../util/response');
 const authService = require('../services/authService');
+const logger = require('../common/logger')('ApiAuth');
 
 function apiAuth(options) {
     let opts = options || {};
@@ -32,7 +33,7 @@ function apiAuth(options) {
 
             next();
         } catch (err) {
-            console.error(`Authenticate failed, ${err.stack}`);
+            logger.error(`Authenticate failed, ${err.stack}`);
             response.sendError(res, err);
             return;
         }

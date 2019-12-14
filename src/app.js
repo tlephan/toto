@@ -8,6 +8,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const serveIndex = require('serve-index');
 const store = require('./store');
+const logger = require('./common/logger')('App');
 const serverConfig = require('./config/server.json');
 const loggingConfig = require('./config/logging.json');
 
@@ -23,8 +24,11 @@ const dashboardRoute = require('./routes/dashboard');
 const accountRoute = require('./routes/account');
 
 console.log(`====== ${packageJson.name} ======`);
+logger.info(`====== ${packageJson.name} ======`)
 var environment = process.env.NODE_ENV || 'development';
-console.log(`Version: ${packageJson.version} (${environment})`);
+let versionMsg = `Version: ${packageJson.version} (${environment})`;
+console.log(versionMsg);
+logger.info(versionMsg);
 
 store.setVersion(packageJson.version);
 store.setStartTime(moment());
@@ -47,8 +51,8 @@ app.use('/dashboard', dashAuth(), dashboardRoute);
 app.use(
     '/static/log',
     dashAuth(),
-    express.static(loggingConfig.directory),
-    serveIndex(loggingConfig.directory, { icons: true, view: 'details' })
+    express.static(loggingConfig.dirname),
+    serveIndex(loggingConfig.dirname, { icons: true, view: 'details' })
 );
 app.use('/api/auth', authRoute); // Public APIs
 app.use('/api/account', rateLimitWrapper(), apiAuth(), accountRoute);
@@ -56,5 +60,7 @@ app.use('/api/health', rateLimitWrapper(), apiAuth(), healthRoute);
 
 const port = serverConfig.port;
 app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
+    let listenMsg = `Server is listening on port ${port}`;
+    console.log(listenMsg);
+    logger.info(listenMsg);
 });

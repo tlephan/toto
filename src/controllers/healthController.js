@@ -3,6 +3,7 @@ const os = require('os');
 const healthUtil = require('../util/healthUtil');
 const store = require('../store');
 const checkDiskSpace = require('check-disk-space');
+const logger = require('../common/logger')('HealthController');
 
 var healthController = {};
 
@@ -45,7 +46,7 @@ healthController.getHealth = async function(req, res) {
         };
         response.sendSuccess(res, data);
     } catch (err) {
-        console.error(`Access ${req.url} failed, ${err.stack}`);
+        logger.error(`Access ${req.url} failed, ${err.stack}`);
         response.sendError(res, err);
     }
 };
