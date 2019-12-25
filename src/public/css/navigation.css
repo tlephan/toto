@@ -55,3 +55,7 @@
 .navbar {
     padding: .3rem 1rem !important;
 }
+
+.nav-logo {
+    max-width: 35px;
+}
