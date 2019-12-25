@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const serveIndex = require('serve-index');
+const favicon = require('serve-favicon');
 const store = require('./store');
 const logger = require('./common/logger')('App');
 const serverConfig = require('./config/server.json');
@@ -37,6 +38,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(favicon(path.join(__dirname, 'public', 'images', 'toto_logo_sm.png')));
 app.use(helmet());
 app.use(compression());
 app.use(cookieParser());
