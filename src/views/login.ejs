@@ -37,7 +37,8 @@
 
                     <div class="form-group form-group-login mt-2">
                         <label class="label-login" for="password-input">Password</label> 
-                        <input type="password" class="form-control" id="password-input" placeholder="" maxlength="100">
+                        <input type="password" class="form-control" id="password-input" placeholder="" 
+                            maxlength="100" onkeypress="loginOnKeyPress(event)">
                         <div id="password-invalid-feedback" class="invalid-feedback">
                             Please enter your password
                         </div>
