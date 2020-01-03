@@ -49,11 +49,20 @@ function loginOnClick() {
             enableLoginComponents();
             console.error(`Login failed, ${error}`);
             if (error === 'Bad Request') {
-                showDangerAlert('Incorrect password!');
+                showDangerAlert('Incorrect password');
             } else {
                 console.error(`Login failed, ${error}`);
                 showDangerAlert(`Login failed`);
             }
         }
     });
+}
+
+function loginOnKeyPress(event) {
+    if (event.keyCode === 13) {
+        // Cancel the default action, if needed
+        event.preventDefault();
+
+        loginOnClick();
+    }
 }
