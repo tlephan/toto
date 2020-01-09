@@ -19,7 +19,7 @@ transport.on('rotate', function(oldFilename, newFilename) {
 });
 
 const customFormat = printf(({ level, message, label, timestamp }) => {
-    return `${timestamp} ${level} [${label}] ${message}`;
+    return `${timestamp} ${level.toUpperCase()} [${label}] ${message}`;
 });
 
 const logger = function(moduleName) {

@@ -12,7 +12,7 @@ const store = require('./store');
 const logger = require('./common/logger')('App');
 const serverConfig = require('./config/server.json');
 const loggingConfig = require('./config/logging.json');
-
+const scheduler = require('./jobs/scheduler');
 const rateLimitWrapper = require('./middlewares/rateLimitWrapper');
 const apiAuth = require('./middlewares/apiAuth');
 const dashAuth = require('./middlewares/dashAuth');
@@ -65,4 +65,6 @@ app.listen(port, () => {
     let listenMsg = `Server is listening on port ${port}`;
     console.log(listenMsg);
     logger.info(listenMsg);
+
+    scheduler.init();
 });
