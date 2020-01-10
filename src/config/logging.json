@@ -2,7 +2,7 @@
     "dirname": "/var/log/toto",
     "filename": "toto-%DATE%.log",
     "datePattern": "YYYY-MM-DD",
-    "zippedArchive": true,
+    "zippedArchive": false,
     "maxSize": "5m",
     "maxFiles": "30d",
     "level": "debug"
