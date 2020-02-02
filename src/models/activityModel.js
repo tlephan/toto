@@ -5,8 +5,8 @@ const activityModel = {};
 
 activityModel.create = async function(data) {
     let doc = {
-        id: data.id,
         type: data.type,
+        action: data.action,
         createdUser: data.createdUser,
         createdAt: data.createdAt,
         updatedAt: data.updatedAt
@@ -34,9 +34,10 @@ activityModel.find = async function(query) {
     });
 };
 
+// Find by generated id
 activityModel.findOne = async function(id) {
     let query = {
-        id: id
+        _id: id
     };
     return new Promise((resolve, reject) => {
         db.find(query, function(err, docs) {

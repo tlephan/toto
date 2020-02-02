@@ -4,11 +4,23 @@ const healthUtil = require('../util/healthUtil');
 const store = require('../store');
 const logger = require('../common/logger')('HealthController');
 const healthService = require('../services/healthService');
+const activityService = require('../services/activityService');
+const ActivityType = require('../common/constants').ActivityType;
+const moment = require('moment');
 
 var healthController = {};
 
 healthController.getHealth = async function(req, res) {
     try {
+        let activity = {
+            type: ActivityType.SYSTEM,
+            action: 'GetHealth',
+            createdUser: ActivityType.SYSTEM,
+            createdAt: moment().format(),
+            updatedAt: moment().format()
+        };
+        await activityService.create(activity);
+
         let uptime = healthUtil.calculateUptime(store.getStartTime());
         let machineUptime = healthUtil.convertSecondToUptime(os.uptime());
         let health = await healthService.check();
