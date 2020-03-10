@@ -16,25 +16,34 @@ In my situation, I just need to monitor one or a few of personal servers in low 
 
 # Deployment
 
-Create a configuration file with name `.env` in directory `env` to contain keys like below (need to change its value in production enviroment):
+1. Clone or pull update from repository: https://github.com/thanhpl/toto.git
+
+2. Create a configuration file with name `.env` in directory `env` that contain keys like below (need to change its value following production environment):
 
 ```json
 JWT_KEY=this-is-a-sample-secret
 FORGOT_PASSWORD_KEY=this-is-forgot-password-key
 ```
 
+3. Run `npm start`
+
 ### Deployment with PM2
 
-Clone or pull source from GitHub repository into directory `/opt/toto`.
+Clone or pull source from repository into directory `/opt/toto`.
 
-To start application:
-```
+To start application with specific production environment:
+```sh
 $ pm2 start ecosystem.config.js --env production
 ```
 
 To update and restart application:
-```
+```sh
 $ pm2 restart toto
+```
+
+To view log of application:
+```sh
+$ pm2 logs toto --line 30
 ```
 
 ### Deployment standalone
