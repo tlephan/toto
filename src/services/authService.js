@@ -1,24 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const fileUtil = require('../util/fileUtil');
-const path = require('path');
-const secretConfig = require('../../secret/secret.json');
+const env = require('../env');
 var authService = {};
 const saltRounds = 10;
 
 authService.login = async function(password) {
-    let hash = '';
-    try {
-        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash.tmp');
-        let plainText = await fileUtil.read(hashFilePath);
-        hash = JSON.parse(plainText).hash;
-    } catch (err) {
-        console.error(err.stack);
-        return {
-            hasPassword: false,
-            isAuthenticated: false
-        };
-    }
+    let hash = env.ADMIN_PASSWORD_HASH;
 
     try {
         let authenticate = function() {
@@ -43,14 +30,14 @@ authService.login = async function(password) {
 };
 
 authService.generateToken = function(data) {
-    const signature = secretConfig.jwtKey;
+    const signature = env.JWT_KEY;
     const expiration = '1h';
     return jwt.sign({ data }, signature, { expiresIn: expiration });
 };
 
 authService.verifyToken = function(token) {
     try {
-        const signature = secretConfig.jwtKey;
+        const signature = env.JWT_KEY;
         let decoded = jwt.verify(token, signature);
         return decoded;
     } catch (err) {
@@ -71,12 +58,7 @@ authService.setNewPassword = async function(newPassword) {
     try {
         let salt = await bcrypt.genSalt(saltRounds);
         let hash = await bcrypt.hash(newPassword, salt);
-        let hashFilePath = path.join(process.cwd(), 'secret', 'p_hash.tmp');
-        let data = {
-            hash: hash,
-            salt: salt
-        };
-        await fileUtil.write(hashFilePath, JSON.stringify(data, null, 4));
+        // Save new password hash here
     } catch (err) {
         throw err;
     }

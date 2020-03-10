@@ -8,6 +8,11 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const serveIndex = require('serve-index');
 const favicon = require('serve-favicon');
+
+// Load process.env configs as soon as possible
+const dotenv = require('dotenv');
+dotenv.config({ path: path.resolve(process.cwd(), 'env', '.env') });
+
 const store = require('./store');
 const logger = require('./common/logger')('App');
 const serverConfig = require('./config/server.json');

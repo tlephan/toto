@@ -16,13 +16,11 @@ In my situation, I just need to monitor one or a few of personal servers in low 
 
 # Deployment
 
-Create a configuration file with name `secret.json` in directory `/secret` to contain keys like below (need to change its value in production enviroment):
+Create a configuration file with name `.env` in directory `env` to contain keys like below (need to change its value in production enviroment):
 
 ```json
-{
-    "jwtKey": "this-is-a-sample-secret",
-    "forgotPasswordKey": "this-is-forgot-password-key"
-}
+JWT_KEY=this-is-a-sample-secret
+FORGOT_PASSWORD_KEY=this-is-forgot-password-key
 ```
 
 ### Deployment with PM2

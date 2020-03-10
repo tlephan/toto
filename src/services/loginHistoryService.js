@@ -8,7 +8,7 @@ loginHistoryService.createLast = async function(data) {
         return false;
     }
     try {
-        let filePath = path.join(process.cwd(), 'secret', 'last_login.tmp');
+        let filePath = path.join(process.cwd(), 'data', 'last_login.tmp');
         await fileUtil.write(filePath, JSON.stringify(data, null, 4));
     } catch (err) {
         throw err;
@@ -17,7 +17,7 @@ loginHistoryService.createLast = async function(data) {
 
 loginHistoryService.findLast = async function() {
     try {
-        let filePath = path.join(process.cwd(), 'secret', 'last_login.tmp');
+        let filePath = path.join(process.cwd(), 'data', 'last_login.tmp');
         let plainText = await fileUtil.read(filePath);
         return JSON.parse(plainText);
     } catch (err) {
