@@ -70,8 +70,6 @@ $RECYCLE.BIN/
 *.sql
 *.sqlite
 *.sqlite3
-data
-!data/.gitkeep
 
 
 ############################
@@ -84,8 +82,7 @@ ssl
 nbproject
 public/uploads/*
 !public/uploads/.gitkeep
-env
-!env/.gitkeep
+
 
 ############################
 # Node.js
