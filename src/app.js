@@ -8,13 +8,19 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const serveIndex = require('serve-index');
 const favicon = require('serve-favicon');
+const logger = require('./common/logger')('App');
 
 // Load process.env configs as soon as possible
 const dotenv = require('dotenv');
-dotenv.config({ path: path.resolve(process.cwd(), 'env', '.env') });
+const fileUtil = require('./util/fileUtil');
+var envPath = path.resolve(process.cwd(), 'env', '.env');
+if (!fileUtil.existsSync(envPath)) {
+    console.error(`Not found config file .env in env directory, process exits`);
+    process.exit(0);
+}
+dotenv.config({ path: envPath });
 
 const store = require('./store');
-const logger = require('./common/logger')('App');
 const serverConfig = require('./config/server.json');
 const loggingConfig = require('./config/logging.json');
 const scheduler = require('./jobs/scheduler');
@@ -30,7 +36,7 @@ const dashboardRoute = require('./routes/dashboard');
 const accountRoute = require('./routes/account');
 
 console.log(`====== ${packageJson.name} ======`);
-logger.info(`====== ${packageJson.name} ======`)
+logger.info(`====== ${packageJson.name} ======`);
 var environment = process.env.NODE_ENV || 'development';
 let versionMsg = `Version: ${packageJson.version} (${environment})`;
 console.log(versionMsg);

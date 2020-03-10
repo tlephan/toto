@@ -59,4 +59,13 @@ fileUtil.writeCombineSync = function(folderPath, fileName, content) {
     return this.write(filePath, content);
 };
 
+fileUtil.existsSync = function(filePath) {
+    try {
+        return fs.existsSync(filePath);
+    } catch (err) {
+        console.error(`Check exist failed, ${err.stack}`);
+        return false;
+    }
+};
+
 module.exports = fileUtil;
