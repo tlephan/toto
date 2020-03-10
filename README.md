@@ -12,7 +12,11 @@ In my situation, I just need to monitor one or a few of personal servers in low 
 * Express app
 * EJS template for UI
 * Public first (implement security later)
-* Deploy standalone or PM2 
+* Deploy standalone or PM2
+
+### What are available APIs?
+
+TBD: Swagger
 
 # Deployment
 
