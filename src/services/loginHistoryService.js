@@ -27,7 +27,7 @@ loginHistoryService.findOne = async function(id) {
 
 loginHistoryService.findOneLatest = async function() {
     try {
-        let sort = { createAt: -1 };
+        let sort = { createdAt: -1 };
         let result = await loginHistoryModel.find({}, sort, 1);
         if (result === null || result.length === 0) {
             return null;
