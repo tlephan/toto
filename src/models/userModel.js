@@ -1,10 +1,11 @@
+const dbConfig = require('./dbConfig');
 const Datastore = require('nedb');
-const db = new Datastore({ filename: '/opt/toto-db/user.db', autoload: true });
+const filename = dbConfig.getModelPath('user');
+const db = new Datastore({ filename: filename, autoload: true });
 
 const userModel = {};
 
-userModel.create = async function(data) {
-    let doc = {};
+userModel.create = async function(doc) {
     return new Promise((resolve, reject) => {
         db.insert(doc, (err, newDoc) => {
             if (err) {
@@ -66,3 +67,5 @@ userModel.deleteOne = async function(id) {
         });
     });
 };
+
+module.exports = userModel;
