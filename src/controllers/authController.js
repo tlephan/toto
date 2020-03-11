@@ -5,6 +5,7 @@ const requestConfig = require('../config/request.json');
 const requestUtil = require('../util/requestUtil');
 const shortId = require('shortid');
 const logger = require('../common/logger')('AuthController');
+const moment = require('moment');
 
 var authController = {};
 
@@ -31,12 +32,12 @@ authController.local = async function(req, res) {
         }
 
         let loginData = {
-            time: new Date(),
             remoteIp: requestUtil.getRemoteIp(req),
             userAgent: requestUtil.getUserAgent(req),
-            status: 'success'
+            status: 'success',
+            createdAt: moment().format()
         }
-        await loginHistoryService.createLast(loginData);
+        await loginHistoryService.create(loginData);
 
         let sessionId = shortId.generate();
         let token = authService.generateToken({

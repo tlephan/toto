@@ -1,25 +1,38 @@
-const fileUtil = require('../util/fileUtil');
-const path = require('path');
+const loginHistoryModel = require('../models/loginHistoryModel');
+const loginHistoryService = {};
 
-var loginHistoryService = {};
-
-loginHistoryService.createLast = async function(data) {
-    if (data === undefined || data === null) {
-        return false;
-    }
+loginHistoryService.create = async function(doc) {
     try {
-        let filePath = path.join(process.cwd(), 'data', 'last_login.tmp');
-        await fileUtil.write(filePath, JSON.stringify(data, null, 4));
+        return await loginHistoryModel.create(doc);
     } catch (err) {
         throw err;
     }
 };
 
-loginHistoryService.findLast = async function() {
+loginHistoryService.find = async function(query) {
     try {
-        let filePath = path.join(process.cwd(), 'data', 'last_login.tmp');
-        let plainText = await fileUtil.read(filePath);
-        return JSON.parse(plainText);
+        return await loginHistoryModel.find(query);
+    } catch (err) {
+        throw err;
+    }
+};
+
+loginHistoryService.findOne = async function(id) {
+    try {
+        return await loginHistoryModel.findOne(id);
+    } catch (err) {
+        throw err;
+    }
+};
+
+loginHistoryService.findOneLatest = async function() {
+    try {
+        let sort = { createAt: -1 };
+        let result = await loginHistoryModel.find({}, sort, 1);
+        if (result === null || result.length === 0) {
+            return null;
+        }
+        return result[0];
     } catch (err) {
         throw err;
     }

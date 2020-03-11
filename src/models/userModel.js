@@ -1,7 +1,9 @@
 const dbConfig = require('./dbConfig');
 const Datastore = require('nedb');
-const filename = dbConfig.getModelPath('user');
-const db = new Datastore({ filename: filename, autoload: true });
+const db = new Datastore({
+    filename: dbConfig.getModelPath('user'),
+    autoload: true
+});
 
 const userModel = {};
 

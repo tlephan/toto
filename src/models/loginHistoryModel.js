@@ -1,13 +1,13 @@
 const dbConfig = require('./dbConfig');
 const Datastore = require('nedb');
 const db = new Datastore({
-    filename: dbConfig.getModelPath('activity'),
+    filename: dbConfig.getModelPath('login_history'),
     autoload: true
 });
 
-const activityModel = {};
+const loginHistoryModel = {};
 
-activityModel.create = async function(doc) {
+loginHistoryModel.create = async function(doc) {
     return new Promise((resolve, reject) => {
         db.insert(doc, (err, newDoc) => {
             if (err) {
@@ -19,22 +19,24 @@ activityModel.create = async function(doc) {
     });
 };
 
-activityModel.find = async function(query) {
+loginHistoryModel.find = async function(query, sort = {}, limit = 100) {
     return new Promise((resolve, reject) => {
-        db.find(query, function(err, docs) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(docs);
-            }
-        });
+        db.find(query)
+            .sort(sort)
+            .limit(limit)
+            .exec(function(err, docs) {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(docs);
+                }
+            });
     });
 };
 
-// Find by generated id
-activityModel.findOne = async function(id) {
+loginHistoryModel.findOne = async function(id) {
     let query = {
-        _id: id
+        id: id
     };
     return new Promise((resolve, reject) => {
         db.find(query, function(err, docs) {
@@ -47,4 +49,4 @@ activityModel.findOne = async function(id) {
     });
 };
 
-module.exports = activityModel;
+module.exports = loginHistoryModel;

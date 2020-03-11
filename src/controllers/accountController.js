@@ -1,8 +1,8 @@
 const response = require('../util/response');
 const authService = require('../services/authService');
-const loginHistoryService = require('../services/loginHistoryService');
 const userAgent = require('useragent');
 const logger = require('../common/logger')('AccountController');
+const loginHistoryService = require('../services/loginHistoryService');
 
 var accountController = {};
 
@@ -46,14 +46,18 @@ accountController.resetPassword = async function(req, res) {
 
 accountController.lastLogin = async function(req, res) {
     try {
-        let data = await loginHistoryService.findLast();
+        let data = await loginHistoryService.findOneLatest();
+        if (data === null) {
+            response.sendNotFound(res);
+            return; 
+        }
         let agent = userAgent.parse(data.userAgent).toString();
         data.userAgent = agent;
-        data.time = data.time.replace('T', ' ');
+        data.createdAt = data.createdAt.replace('T', ' ');
         response.sendSuccess(res, data);
     } catch (err) {
         logger.error(err.stack);
-        response.sendNotFound(res, 'Not found last login data');
+        response.sendError(res, err);
     }
 };
 

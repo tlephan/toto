@@ -123,7 +123,7 @@ function renderLastLogin(result) {
     html += `<div>
         <div class="data-group">Last Login</div>
         <div class="data-item ml-2">Status: ${result.status}</div>
-        <div class="data-item ml-2">Time: ${result.time}</div>
+        <div class="data-item ml-2">Time: ${result.createdAt}</div>
         <div class="data-item ml-2">Remote IP: ${result.remoteIp}</div>
         <div class="data-item ml-2">User Agent: ${result.userAgent}</div>
     </div>`;
