@@ -1,8 +1,10 @@
+const logger = require('../common/logger')('RequestUtil');
 var requestUtil = {};
 
 requestUtil.getRemoteIp = function(req) {
     //let remoteAddr =
     //    req.headers['X-Forwarded-For'] || req.connection.remoteAddress;
+    logger.debug(`Request headers: ${JSON.stringify(req.headers, null, 4)}`);
     let forward =
         req.headers['X-Forwarded-For'] === undefined
             ? ''
