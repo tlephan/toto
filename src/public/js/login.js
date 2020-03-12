@@ -12,12 +12,21 @@ function enableLoginComponents() {
     let html = `Log in`;
     $('#login-button').html(html);
     $('#login-button').prop('disabled', false);
+    $('#username-input').prop('disables', false);
     $('#password-input').prop('disables', false);
 }
 
 function loginOnClick() {
     // Close alerts if there are any
     closeDangerAlert();
+
+    var username = $('#username-input').val();
+    if (username.trim() === '') {
+        $('#username-invalid-feedback').css('display', 'block');
+        return;
+    } else {
+        $('#username-invalid-feedback').css('display', 'none');
+    }
 
     var password = $('#password-input').val();
     if (password.trim() === '') {
@@ -30,6 +39,7 @@ function loginOnClick() {
     disableLoginComponents();
 
     let data = {
+        username: username,
         password: password,
         isDashboard: true
     };
@@ -49,10 +59,10 @@ function loginOnClick() {
             enableLoginComponents();
             console.error(`Login failed, ${error}`);
             if (error === 'Bad Request') {
-                showDangerAlert('Incorrect password');
+                showDangerAlert('Incorrect username or password');
             } else {
                 console.error(`Login failed, ${error}`);
-                showDangerAlert(`Login failed`);
+                showDangerAlert(`Login failed, an error happened`);
             }
         }
     });

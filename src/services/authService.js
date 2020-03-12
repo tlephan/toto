@@ -4,11 +4,16 @@ const env = require('../env');
 var authService = {};
 const saltRounds = 10;
 
-authService.login = async function(password) {
+authService.login = async function(username, password) {
     let hash = env.ADMIN_PASSWORD_HASH;
-
     try {
-        let authenticate = function() {
+        if (username !== env.ADMIN_USERNAME) {
+            return {
+                hasPassword: true,
+                isAuthenticated: false
+            };
+        }
+        let comparePassword = function() {
             return new Promise((resolve, reject) => {
                 bcrypt.compare(password, hash, (err, result) => {
                     if (err) {
@@ -19,10 +24,10 @@ authService.login = async function(password) {
                 });
             });
         };
-        let isAuthenticated = await authenticate();
+        let isMatched = await comparePassword();
         return {
             hasPassword: true,
-            isAuthenticated: isAuthenticated
+            isAuthenticated: isMatched
         };
     } catch (err) {
         throw err;

@@ -6,28 +6,33 @@ const requestUtil = require('../util/requestUtil');
 const shortId = require('shortid');
 const logger = require('../common/logger')('AuthController');
 const moment = require('moment');
+const text = require('../common/text');
 
 var authController = {};
 
 authController.local = async function(req, res) {
+    let username = '';
     let password = '';
     let isDashboard = false;
     try {
         if (req.body.isDashboard !== undefined) {
             isDashboard = req.body.isDashboard;
         }
+        if (req.body.username !== undefined) {
+            username = req.body.username;
+        }
         if (req.body.password !== undefined) {
             password = req.body.password;
         }
-        let loginResult = await authService.login(password);
+        let loginResult = await authService.login(username, password);
 
         if (!loginResult.hasPassword) {
-            response.sendNotFound(res, 'Not found credentials');
+            response.sendNotFound(res, text.NOT_FOUND_CREDENTIALS);
             return;
         }
 
         if (!loginResult.isAuthenticated) {
-            response.sendBadRequest(res, 'Incorrect password');
+            response.sendBadRequest(res, text.INCORRECT_USERNAME_PASSWORD);
             return;
         }
 
@@ -36,7 +41,7 @@ authController.local = async function(req, res) {
             userAgent: requestUtil.getUserAgent(req),
             status: 'success',
             createdAt: moment().format()
-        }
+        };
         await loginHistoryService.create(loginData);
 
         let sessionId = shortId.generate();
