@@ -38,7 +38,7 @@
                     <div class="form-group form-group-login mt-2">
                         <label class="label-login" for="username-input">Username</label> 
                         <input type="text" class="form-control" id="username-input" placeholder="" 
-                            maxlength="100">
+                            maxlength="100" onkeypress="loginOnKeyPress(event)">
                         <div id="username-invalid-feedback" class="invalid-feedback">
                             Please enter your username
                         </div>
