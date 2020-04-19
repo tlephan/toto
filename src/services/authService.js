@@ -36,7 +36,7 @@ authService.login = async function(username, password) {
 
 authService.generateToken = function(data) {
     const signature = env.JWT_KEY;
-    const expiration = '1h';
+    const expiration = '24h';
     return jwt.sign({ data }, signature, { expiresIn: expiration });
 };
 
