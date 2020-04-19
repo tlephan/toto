@@ -7,7 +7,7 @@
         "client": "cookie",
         "path": "/",
         "httpOnly": false,
-        "maxAge": 3600,
+        "maxAge": 86400,
         "signed": false
     }
 }
