@@ -19,7 +19,7 @@ authController.local = async function(req, res) {
             isDashboard = req.body.isDashboard;
         }
         if (req.body.username !== undefined) {
-            username = req.body.username;
+            username = req.body.username.toLowerCase().trim();
         }
         if (req.body.password !== undefined) {
             password = req.body.password;
