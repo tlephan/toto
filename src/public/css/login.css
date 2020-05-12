@@ -57,7 +57,14 @@
 }
 
 .login-title {
-    margin-top: 7px;
+    border-radius: 3px;
+    border: thin solid #133337;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-weight: 600;
+    color: #008080;
 }
 
 .table-login-header {
