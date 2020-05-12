@@ -47,7 +47,7 @@ $ pm2 restart toto
 
 To view log of application:
 ```sh
-$ pm2 logs toto --line 30
+$ pm2 log toto --lines 100
 ```
 
 ### Deployment standalone
