@@ -16,21 +16,49 @@ function enableLoginComponents() {
     $('#password-input').prop('disables', false);
 }
 
+function usernameOnKeyUp() {
+    var username = $('#username-input').val();
+    if (/\s/.test(username)) {
+        $('#username-invalid-feedback').css('display', 'block');
+        $('#username-invalid-feedback').html('Username cannot contain any space character');
+        $('#login-button').prop('disabled', true);
+    } else {
+        $('#username-invalid-feedback').css('display', 'none');
+        $('#login-button').prop('disabled', false);
+    }
+}
+
+function passwordOnKeyUp() {
+    var password = $('#password-input').val();
+    if (/\s/.test(password)) {
+        $('#password-invalid-feedback').css('display', 'block');
+        $('#password-invalid-feedback').html('Password cannot contain any space character');
+        $('#login-button').prop('disabled', true);
+    } else {
+        $('#password-invalid-feedback').css('display', 'none');
+        $('#login-button').prop('disabled', false);
+    }
+}
+
 function loginOnClick() {
     // Close alerts if there are any
     closeDangerAlert();
 
+    // Check username is empty
     var username = $('#username-input').val();
     if (username.trim() === '') {
         $('#username-invalid-feedback').css('display', 'block');
+        $('#username-invalid-feedback').html('Please enter your username');
         return;
     } else {
         $('#username-invalid-feedback').css('display', 'none');
     }
 
+    // Check password is emtpy
     var password = $('#password-input').val();
     if (password.trim() === '') {
         $('#password-invalid-feedback').css('display', 'block');
+        $('#password-invalid-feedback').html('Please enter your password');
         return;
     } else {
         $('#password-invalid-feedback').css('display', 'none');
@@ -68,7 +96,7 @@ function loginOnClick() {
     });
 }
 
-function loginOnKeyPress(event) {
+function loginOnKeyDown(event) {
     if (event.keyCode === 13) {
         // Cancel the default action, if needed
         event.preventDefault();
