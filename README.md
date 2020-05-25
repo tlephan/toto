@@ -50,6 +50,11 @@ To view log of application:
 $ pm2 log toto --lines 100
 ```
 
+To reset meta data (restart count) of process:
+```sh
+$ pm2 reset toto
+```
+
 ### Deployment standalone
 
 To start application standalone:
