@@ -1,3 +1,4 @@
 {
-    "port": 1993
+    "port": 1993,
+    "staticDir": "/var/toto/static"
 }
