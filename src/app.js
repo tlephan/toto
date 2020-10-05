@@ -8,6 +8,7 @@ const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const serveIndex = require('serve-index');
 const favicon = require('serve-favicon');
+const cors = require('cors');
 const logger = require('./common/logger')('App');
 
 // Load process.env configs as soon as possible
@@ -53,6 +54,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(helmet());
 app.use(compression());
 app.use(cookieParser());
+app.use(cors());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -62,11 +64,19 @@ app.use('/', indexRoute);
 app.use('/login', dashAuth(), loginRoute);
 app.use('/dashboard', dashAuth(), dashboardRoute);
 app.use(
-    '/static/log',
+    '/private-static/log',
     dashAuth(),
     express.static(loggingConfig.dirname),
     serveIndex(loggingConfig.dirname, { icons: true, view: 'details' })
 );
+
+// Public static hosting
+app.use(
+    '/static',
+    express.static(serverConfig.staticDir),
+    serveIndex(serverConfig.staticDir, { icons: true, view: 'details' })
+);
+
 app.use('/api/auth', authRoute); // Public APIs
 app.use('/api/account', rateLimitWrapper(), apiAuth(), accountRoute);
 app.use('/api/health', rateLimitWrapper(), apiAuth(), healthRoute);
