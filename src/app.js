@@ -35,6 +35,7 @@ const authRoute = require('./routes/auth');
 const loginRoute = require('./routes/login');
 const dashboardRoute = require('./routes/dashboard');
 const accountRoute = require('./routes/account');
+const sandboxRoute = require('./routes/sandbox');
 
 console.log(`====== ${packageJson.name} ======`);
 logger.info(`====== ${packageJson.name} ======`);
@@ -76,6 +77,9 @@ app.use(
     express.static(serverConfig.staticDir),
     serveIndex(serverConfig.staticDir, { icons: true, view: 'details' })
 );
+
+// Public sandbox
+app.use('/sandbox', sandboxRoute);
 
 app.use('/api/auth', authRoute); // Public APIs
 app.use('/api/account', rateLimitWrapper(), apiAuth(), accountRoute);
