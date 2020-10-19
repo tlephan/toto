@@ -28,6 +28,7 @@ const scheduler = require('./jobs/scheduler');
 const rateLimitWrapper = require('./middlewares/rateLimitWrapper');
 const apiAuth = require('./middlewares/apiAuth');
 const dashAuth = require('./middlewares/dashAuth');
+const requestTrail = require('./middlewares/requestTrail');
 
 const indexRoute = require('./routes/index');
 const healthRoute = require('./routes/health');
@@ -74,13 +75,15 @@ app.use(
 // Public static hosting
 app.use(
     '/static',
+    requestTrail(),
     express.static(serverConfig.staticDir),
     serveIndex(serverConfig.staticDir, { icons: true, view: 'details' })
 );
 
 // Public sandbox
-app.use('/sandbox', sandboxRoute);
+app.use('/sandbox', requestTrail(), sandboxRoute);
 
+// Authenticated APIs
 app.use('/api/auth', authRoute); // Public APIs
 app.use('/api/account', rateLimitWrapper(), apiAuth(), accountRoute);
 app.use('/api/health', rateLimitWrapper(), apiAuth(), healthRoute);
