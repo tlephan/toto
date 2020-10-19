@@ -9,7 +9,7 @@ response.sendSuccess = function(res, data) {
 
 response.sendError = function(res, err) {
     let json = {
-        statusCode: 500,
+        status: 500,
         error: 'Internal Server Error',
         message: err.toString()
     };
@@ -20,7 +20,7 @@ response.sendError = function(res, err) {
 
 response.sendNotFound = function(res, message = 'Not Found') {
     let json = {
-        statusCode: 404,
+        status: 404,
         message: message
     };
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -30,7 +30,7 @@ response.sendNotFound = function(res, message = 'Not Found') {
 
 response.sendBadRequest = function(res, message = 'Bad Request') {
     let json = {
-        statusCode: 400,
+        status: 400,
         error: 'Bad Request',
         message: message
     };
@@ -41,7 +41,7 @@ response.sendBadRequest = function(res, message = 'Bad Request') {
 
 response.sendForbidden = function(res, message = 'Forbidden') {
     let json = {
-        statusCode: 403,
+        status: 403,
         message: message
     };
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -51,7 +51,7 @@ response.sendForbidden = function(res, message = 'Forbidden') {
 
 response.sendUnauthorized = function(res, message = 'Unauthorized') {
     let json = {
-        statusCode: 401,
+        status: 401,
         message: message
     };
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
