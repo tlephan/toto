@@ -56,3 +56,34 @@ To start application standalone:
 ```
 $ ./entrypoint.sh &
 ```
+
+# Sandbox APIs
+
+### Get Moment
+Description: Return date time information from moment.js and count the number of days left in the year.
+
+Method: GET
+
+Endpoint: `/sandbox/moment`
+
+### Send Message
+Description: Send a message to Telegram group via chat bot API.
+
+Method: POST
+
+Endpoint: `/sandbox/sendMessage`
+
+Request body:
+```json
+{
+    "bot_token": "1242861915:AAFoPhbiqhXWG8S-NBEQlUbggtbjvhVZ88k",
+    "chat_id": -256675704,
+    "text": "This is a sample message",
+    "parse_mode": "",
+    "disable_notification": false
+}
+```
+
+Response: 
+* 200 OK: Send message successfully
+* Others: Bad request or server error
