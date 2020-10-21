@@ -83,11 +83,12 @@ Request body:
 {
     "bot_token": "1242861915:AAFoPhbiqhXWG8S-NBEQlUbggtbjvhVZ88k",
     "chat_id": -256675704,
-    "text": "This is a sample message",
-    "parse_mode": "",
+    "text": "<b>Sample Test</b>\nThis is a sample message",
+    "parse_mode": "html",
     "disable_notification": false
 }
 ```
+*Note*: More detail about HTML format in Telegram message at [Formatting Options](https://core.telegram.org/bots/api#formatting-options)
 
 Response: 
 * 200 OK: Send message successfully
